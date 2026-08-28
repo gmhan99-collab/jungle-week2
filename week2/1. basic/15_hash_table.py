@@ -41,6 +41,14 @@ def manage_grades(students):
         평균, 최고점 학생 이름, 최고점
     """
     # TODO: 평균 점수 계산
+
+    top_score = 0
+    top_student = []
+
+    average = sum(students.values() / len(students))
+    top_score = max(key = students.get)
+    top_student = (students.values() == top_score)
+    
     pass
     
     

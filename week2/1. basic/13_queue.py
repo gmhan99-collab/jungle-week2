@@ -45,7 +45,10 @@ def process_print_queue(jobs):
     ## 큐에서 작업 꺼내기
     ## 작업 처리 (출력 및 리스트에 추가)
     pass
-    
+    while(len(jobs) != 0):
+        processed.append(jobs[0])
+        print("처리:",jobs[0])
+        jobs.pop(0)
     return processed
 
 # 테스트 케이스
