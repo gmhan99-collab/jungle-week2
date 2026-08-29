@@ -41,6 +41,11 @@ def process_emergency_room(patients):
     
     
     # TODO: 모든 환자를 힙에 추가
+    # heapq.heapify(heap) # 리스트를 즉시 heap화 하는 메소드인데... heappush함수를 사용하면 힙으로 바꿔주는 기능이 있나?
+    for i in range(len(patients)):
+        heapq.heappush(heap, (patients[i][1],patients[i][0]))
+    
+    # print(heap)
     pass
         
     processed = []
@@ -48,6 +53,10 @@ def process_emergency_room(patients):
     # TODO: 힙이 비어있지 않은 동안 반복
     ## 힙에서 우선순위가 가장 높은 환자 꺼내기
     ## 환자 처리
+    while(len(heap)):
+        processed.append(heap[0][1])
+        print("처리: %s (우선순위: %d)" %(heap[0][1], heap[0][0]))
+        heapq.heappop(heap)
     pass
         
     return processed
