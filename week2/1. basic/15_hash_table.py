@@ -45,10 +45,12 @@ def manage_grades(students):
     top_score = 0
     top_student = []
 
-    average = sum(students.values() / len(students))
-    top_score = max(key = students.get)
-    top_student = (students.values() == top_score)
-    
+    average = sum(students.values()) / len(students)
+    top_score = max(students.values())
+    top_student = [k for k, v in students.items() if v == top_score][0]
+    # 리스트 컴프리헨션을 쓴 이유는 동점자가 있을 수 있기 때문.
+    # 출력 시 list에 들어 있는 string 형태로 나오기 때문에 모양이 날것임.
+    # 동점자가 없다고 가정해서 [0]인덱스로 문자열만 깔끔하게 출력 가능.
     pass
     
     
@@ -69,6 +71,7 @@ def find_student_score(students, name):
         점수 (없으면 None)
     """
     # TODO: students에서 name 찾기
+    return students.get(name)
     pass
 
 # 테스트 케이스
