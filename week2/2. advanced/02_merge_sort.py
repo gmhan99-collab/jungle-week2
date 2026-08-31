@@ -33,38 +33,50 @@ def merge(arr, left, mid, right):
         right: 오른쪽 부분의 끝 인덱스
     """
     # TODO: 왼쪽과 오른쪽 부분 배열을 임시 배열로 복사
-    arr_left = arr[left:mid].copy() # mid 미포함
-    arr_right = arr[mid+1:right].copy() # right + 1 미포함
+    arr_left = arr[left:mid+1].copy() # mid 포함
+    arr_right = arr[mid+1:right+1].copy() # right + 1 미포함
     pass
     
     # TODO: 두 배열을 병합
-    merged_arr = (arr_left + arr_right).copy()
+    # merged_arr = (arr_left + arr_right).copy()
     
     
     # TODO: left_arr와 right_arr를 비교하며 작은 값을 arr에 복사
-    index_left, index_right = left, mid + 1
-    cursor = left
+    # index_left, index_right = left, mid + 1
+    cursor = left 
+    index_left, index_right = 0 , 0
+    
+    # while(index_left < left_len and index_right < right_len):
+    #     if(merged_arr[index_left] <= merged_arr[index_right]):
+    #         arr[cursor] = merged_arr[index_left]
+    #         index_left += 1,
+    #         cursor += 1
+    #     else:
+    #         arr[cursor] = merged_arr[index_right]
+    #         index_right += 1
+    #         cursor += 1
 
-    while(index_left < mid and index_right <= right):
-        if(merged_arr[index_left] <= merged_arr[index_right]):
-            arr[cursor] = merged_arr[index_left]
-            index_left += 1, 
+    while(index_left < len(arr_left) and index_right < len(arr_right)):
+        if(arr_left[index_left] <= arr_right[index_right]) :
+            arr[cursor] = arr_left[index_left]
+            index_left += 1
             cursor += 1
         else:
-            arr[cursor] = merged_arr[index_right]
+            arr[cursor] = arr_right[index_right]
             index_right += 1
             cursor += 1
     
+
     # TODO: 남은 원소들을 복사
     # left_arr에 남은 원소가 있으면 복사
-    for i in range(index_left, mid):
-        arr[cursor] = merged_arr[index_left]
+    for i in range(index_left, len(arr_left)):
+        arr[cursor] = arr_left[index_left]
         index_left += 1
         cursor += 1
 
     # right_arr에 남은 원소가 있으면 복사
-    for i in range(index_right, right + 1):
-        arr[cursor] = merged_arr[index_right]
+    for i in range(index_right, len(arr_right)):
+        arr[cursor] = arr_right[index_right]
         index_right += 1
         cursor += 1
 
@@ -86,8 +98,8 @@ def merge_sort_helper(arr, left, right):
     ## 정렬된 두 절반을 병합
     if(left < right): 
         mid = (left + right) // 2
-        merge_sort_helper(arr, left, mid-1)
-        merge_sort_helper(arr, mid, right)
+        merge_sort_helper(arr, left, mid)
+        merge_sort_helper(arr, mid+1, right)
         merge(arr, left, mid, right)
 
 def merge_sort(arr):

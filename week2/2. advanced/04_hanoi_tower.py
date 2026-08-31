@@ -22,7 +22,7 @@
 
 ▣ 규칙
   (1) 한 번에 정확히 하나의 원반만 다른 기둥으로 옮길 수 있다.
-  (2) 큰 원반이 작은 원반 위에 놓이는 상황은 절대 만들 수 없다.
+    (2) 큰 원반이 작은 원반 위에 놓이는 상황은 절대 만들 수 없다.
 
 ▣ 작은 예시 (N = 2)
     초기:  [2,1] |  []  |  []      (1번에 큰 원반 2, 그 위에 작은 원반 1)
@@ -60,6 +60,7 @@
 def hanoi_count(n: int) -> int:
     """N 개의 원반을 옮기는 데 필요한 최소 이동 횟수( = 2^N - 1) 를 반환"""
     # TODO: 2^N - 1 을 정수로 반환하세요.
+    return (pow(2,n)-1)
     pass
 
 
@@ -71,8 +72,17 @@ def hanoi_moves(n: int) -> list:
 
     예) hanoi_moves(2) == [(1, 2), (1, 3), (2, 3)]
     """
+    result = []
+    if n > 20 or n == 0 : return []
     # TODO: N > 20 또는 N == 0 인 경우 [] 를 반환하세요.
     # TODO: 그 외에는 재귀로 이동 순서를 만들어 반환하세요.
+    def move(k, src, via, dst):
+        if k is 0 : return 0
+        move(k-1, src, dst, via)
+        result.append((src, dst))
+        move(k-1, via, src, dst)
+    move(n,1,2,3)
+    return result
     pass
 
 

@@ -68,8 +68,27 @@ def n_queens(n: int) -> int:
     #       ...
     #   place(0)
     #   return count
-    pass
+    cols = [0] * n
+    count = 0
 
+    def place(row):
+        nonlocal count
+        if row == n: count += 1 # 탈출 조건
+        for i in range(n):
+            if isPlaceable(row, i):
+                cols[row] = i
+                place(row + 1)
+            else: continue
+        return
+    
+    def isPlaceable(row, i):
+        for j in range(row):
+            if(cols[j] == i or (abs(cols[j] - i) == abs(row - j))):
+               return False
+        return True
+
+    place(0)
+    return count
 
 if __name__ == "__main__":
     print("[테스트] N=1 ~ N=8 에 대한 가능한 배치의 수")
