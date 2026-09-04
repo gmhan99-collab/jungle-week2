@@ -41,13 +41,28 @@ def create_graph(vertices, edges, directed=False):
         그래프 딕셔너리
     """
     # TODO: 빈 그래프 초기화
-    pass
+    # graph = [[0 for _ in range(vertices)] for _ in range(vertices)]
+    # graph = {"":[]}
+    graph = {}
     
     # TODO: 간선 추가
     ## 간선 추가 (u에서 v로)
     ## 무방향 그래프면 반대 방향도 추가
-    pass
+    # for u, v in edges :
+    #     graph[u][v] = 1
+    #     if directed is False:
+    #         graph[v][u] = 1
     
+    for (u, v) in edges :
+        if not graph.get(u): 
+            graph[u] = [v]
+            graph.setdefault(v,[]) # 예시에서 3 -> [] 인 결과를 표시 할 방법이 없었음.
+        else : graph[u].append(v)
+        if directed is False:
+            if not graph.get(v) :
+                graph[v] = [u]
+            else : graph[v].append(u)
+            
     return graph
 
 # 테스트 케이스
