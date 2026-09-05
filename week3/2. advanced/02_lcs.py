@@ -37,10 +37,19 @@ def lcs_length(s1: str, s2: str) -> int:
     어느 한쪽이라도 비어 있으면 0 을 반환합니다.
     """
     # TODO: 빈 문자열 처리
+    if len(s1) == 0 or len(s2) == 0 : return 0
     # TODO: (len(s1)+1) x (len(s2)+1) 크기의 2차원 dp 배열을 0 으로 초기화
+    dp = [[0 for _ in range(len(s1)+1)] for _ in range(len
+    (s2) + 1)] # 가로 len(s1)+1, 세로 len(s2)+1 배열 생성됨
     # TODO: 이중 반복문으로 점화식에 따라 dp 채우기
+    for i in range(1,len(s2)+1): 
+        for j in range(1,len(s1)+1): # 이차원 배열 dp[i][j]의 두 번째 부분이 가로로 탐색하니까, 반복문 순서가 뒤집혀야 정상적으로 탐색함.
+            if s2[i-1] == s1[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
     # TODO: dp[len(s1)][len(s2)] 반환
-    pass
+    return dp[len(s2)][len(s1)]
 
 
 if __name__ == "__main__":
