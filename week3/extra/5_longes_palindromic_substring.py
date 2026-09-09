@@ -14,7 +14,7 @@ class Solution:
 
                 if s[i] == s[j]:
                     if length <= 2:
-                        dp[i][j] == True
+                        dp[i][j] = True
                     else:
                         dp[i][j] = dp[i+1][j-1]
 
