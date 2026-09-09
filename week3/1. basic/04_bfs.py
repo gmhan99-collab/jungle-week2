@@ -55,13 +55,22 @@ def bfs(graph, start):
     ## 큐에서 정점 꺼내기
     ## 인접한 정점들 확인
     ## 방문하지 않은 정점이면 큐에 추가
-    while(len(queue)):
+    while(queue):
         now = queue.popleft()
+        # for i in graph[now]:
+        #     if i not in visited:
+        #         queue.append(i)
+        #         visited.append(i)
+        #     else: continue
+        # for i in graph[now] and i not in visited: # 조건문 실행 안됨
+        #     queue.append(i)
+        #     visited.append(i)
+        # else : continue
+
         for i in graph[now]:
-            if i not in visited:
-                queue.append(i)
-                visited.append(i)
-            else: continue
+            if i in visited : continue
+            queue.append(i)
+            visited.append(i)
             
     pass
     
