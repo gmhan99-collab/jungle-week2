@@ -42,21 +42,17 @@ def create_graph(vertices, edges, directed=False):
     """
     # TODO: 빈 그래프 초기화
     # graph = [[0 for _ in range(vertices)] for _ in range(vertices)]
-    # graph = {"":[]}
-    graph = {}
+    # graph = {}
+    graph = {i : [] for i in range(vertices)}
     
     # TODO: 간선 추가
     ## 간선 추가 (u에서 v로)
     ## 무방향 그래프면 반대 방향도 추가
-    # for u, v in edges :
-    #     graph[u][v] = 1
-    #     if directed is False:
-    #         graph[v][u] = 1
     
     for (u, v) in edges :
         if not graph.get(u): 
             graph[u] = [v]
-            graph.setdefault(v,[]) # 예시에서 3 -> [] 인 결과를 표시 할 방법이 없었음.
+            # graph.setdefault(v,[]) # 예시에서 3 -> [] 인 결과를 표시 할 방법이 없었음.
         else : graph[u].append(v)
         if directed is False:
             if not graph.get(v) :
